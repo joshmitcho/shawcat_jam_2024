@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6kof4uc3yv1p"]
+
+[ext_resource type="Texture2D" uid="uid://bl52jik52s3r1" path="res://art/cat_icon.png" id="1_wlc6b"]
+[ext_resource type="Script" path="res://scripts/squash_count.gd" id="2_lysa4"]
+
+[node name="Main UI" type="Control"]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SquashDisplay" type="Label" parent="."]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -250.0
+offset_bottom = 127.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 64
+text = "0/5"
+vertical_alignment = 1
+script = ExtResource("2_lysa4")
+
+[node name="CatIcon" type="TextureRect" parent="SquashDisplay"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_bottom = 128.0
+grow_horizontal = 0
+texture = ExtResource("1_wlc6b")
