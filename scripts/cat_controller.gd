@@ -13,7 +13,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("squash_cat"):
 		cat_squashed()
 

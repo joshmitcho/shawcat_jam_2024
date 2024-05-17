@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Shawcat Jam 2024"
-run/main_scene="res://scenes/cute_map.tscn"
+run/main_scene="res://scenes/level_1.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,8 +21,6 @@ CatController="*res://scripts/cat_controller.gd"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
 window/stretch/mode="viewport"
 
 [input]
@@ -35,4 +33,4 @@ squash_cat={
 
 [rendering]
 
-renderer/rendering_method="mobile"
+textures/canvas_textures/default_texture_filter=0

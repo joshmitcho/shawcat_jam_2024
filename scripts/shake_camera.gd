@@ -31,7 +31,7 @@ func add_trauma(amount: float) -> void:
 	trauma = min(trauma + amount, 1.0)
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if target:
 		global_position = get_node(target).global_position
 	if trauma:
