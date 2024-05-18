@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwmgub6fosuqy"]
+
+[ext_resource type="Texture2D" uid="uid://ks2yidwlwthc" path="res://art/cave_bg.png" id="1_5i7jq"]
+[ext_resource type="Texture2D" uid="uid://7brf8xpmd8o2" path="res://art/game_title.png" id="1_mao5p"]
+[ext_resource type="Script" path="res://scripts/start_menu.gd" id="2_613kv"]
+[ext_resource type="AudioStream" uid="uid://t6h8w7ocssf2" path="res://sound/creepo.mp3" id="4_nbpfd"]
+
+[node name="StartMenu" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_5i7jq")
+script = ExtResource("2_613kv")
+
+[node name="Control" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 2
+
+[node name="GameTitle" type="TextureRect" parent="Control/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_mao5p")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_right = 250
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="Control/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "START"
+
+[node name="QuitButton" type="Button" parent="Control/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "QUIT"
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_nbpfd")
+autoplay = true
+
+[connection signal="pressed" from="Control/VBoxContainer/MarginContainer/VBoxContainer/StartButton" to="." method="start_game"]
+[connection signal="pressed" from="Control/VBoxContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="quit_game"]

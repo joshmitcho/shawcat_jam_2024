@@ -1,13 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjjnwk4y14wm6"]
+[gd_scene load_steps=6 format=3 uid="uid://bjjnwk4y14wm6"]
 
-[ext_resource type="Texture2D" uid="uid://ks2yidwlwthc" path="res://art/cave_bg.png" id="1_lopyf"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_3eeg7"]
 [ext_resource type="Texture2D" uid="uid://biwond464pw3f" path="res://demo/Tiles/tiles_packed.png" id="2_rwv0a"]
-[ext_resource type="Script" path="res://scripts/shake_camera.gd" id="3_ufast"]
-[ext_resource type="PackedScene" uid="uid://b6kof4uc3yv1p" path="res://scenes/main_ui.tscn" id="4_1751t"]
-[ext_resource type="Texture2D" uid="uid://m1cq5u4syuyq" path="res://art/light.png" id="5_iney7"]
-[ext_resource type="Script" path="res://scripts/red_light.gd" id="6_f5wp3"]
 [ext_resource type="PackedScene" uid="uid://cdccq5ys3hdbr" path="res://scenes/cat.tscn" id="7_1ct1y"]
-[ext_resource type="PackedScene" uid="uid://lsmhro8e3pof" path="res://scenes/Player.tscn" id="8_0drv3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7c5gq"]
 texture = ExtResource("2_rwv0a")
@@ -656,41 +651,12 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_7c5gq")
 
 [node name="Level1" type="Node2D"]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-ignore_rotation = false
-zoom = Vector2(3, 3)
-script = ExtResource("3_ufast")
-target = NodePath("../Player")
-
-[node name="BG" type="Sprite2D" parent="Camera2D"]
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("1_lopyf")
-
-[node name="Main UI" parent="Camera2D" instance=ExtResource("4_1751t")]
-offset_left = -200.0
-offset_top = -100.0
-offset_right = 184.0
-offset_bottom = 116.0
+script = ExtResource("1_3eeg7")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_ft7jq")
 format = 2
-layer_0/tile_data = PackedInt32Array(65531, 65536, 1, 65532, 131072, 1, 65533, 131072, 1, 65534, 131072, 1, 65535, 131072, 1, 0, 131072, 1, 1, 131072, 1, 2, 131072, 1, 3, 131072, 1, 131067, 65536, 6, 131068, 131072, 6, 131069, 131072, 6, 131070, 131072, 6, 131071, 131072, 6, 65536, 131072, 6, 65537, 131072, 6, 65538, 131072, 6, 65539, 131072, 6, 131075, 131072, 6, 196611, 131072, 7, 196610, 131072, 7, 196609, 131072, 7, 196608, 131072, 7, 262143, 131072, 7, 262142, 131072, 7, 262141, 131072, 7, 262140, 131072, 7, 262139, 65536, 7, 196603, 65536, 6, 196604, 131072, 6, 196605, 131072, 6, 196606, 131072, 6, 196607, 131072, 6, 131072, 131072, 6, 131073, 131072, 6, 131074, 131072, 6, 5, 196608, 1, 65541, 196608, 6, 131077, 196608, 6, 65540, 131072, 6, 131076, 131072, 6, 196612, 131072, 7, 196613, 196608, 7, -131063, 131072, 1, -65527, 131072, 6, 9, 131072, 6, 10, 131072, 6, -65526, 131072, 6, -131062, 131072, 1, -131061, 131072, 1, -65525, 131072, 6, 11, 131072, 6, -131058, 786432, 6, -131057, 851968, 6, -131056, 851968, 6, -131055, 851968, 6, -131054, 917504, 5, -196590, 851968, 4, -196589, 851968, 6, -196588, 851968, 6, -196587, 917504, 4, -131051, 983040, 5, -65515, 851968, 5, -65514, 851968, 6, -65513, 851968, 6, -65512, 917504, 5, -131048, 983040, 5, -196584, 851968, 4, -196583, 851968, 6, -196582, 851968, 6, -196581, 917504, 4, -131045, 983040, 5, -65509, 983040, 5, 27, 983040, 5, 65563, 983040, 6, 4, 131072, 1, -131064, 65536, 1, -131060, 196608, 1, -65528, 65536, 6, 8, 65536, 6, 65544, 65536, 7, 65548, 196608, 7, 12, 196608, 6, -65524, 196608, 6, 65545, 131072, 7, 65546, 131072, 7, 65547, 131072, 7)
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-641, -1)
-color = Color(1, 0, 0, 1)
-texture = ExtResource("5_iney7")
-texture_scale = 6.0
-script = ExtResource("6_f5wp3")
-
-[node name="PointLight2D2" type="PointLight2D" parent="."]
-position = Vector2(632, 0)
-color = Color(1, 0, 0, 1)
-texture = ExtResource("5_iney7")
-texture_scale = 6.0
-script = ExtResource("6_f5wp3")
+layer_0/tile_data = PackedInt32Array(65531, 65536, 1, 65532, 131072, 1, 65533, 131072, 1, 65534, 131072, 1, 65535, 131072, 1, 0, 131072, 1, 1, 131072, 1, 2, 131072, 1, 3, 131072, 1, 131067, 65536, 6, 131068, 131072, 6, 131069, 131072, 6, 131070, 131072, 6, 131071, 131072, 6, 65536, 131072, 6, 65537, 131072, 6, 65538, 131072, 6, 65539, 131072, 6, 131075, 131072, 6, 196611, 131072, 7, 196610, 131072, 7, 196609, 131072, 7, 196608, 131072, 7, 262143, 131072, 7, 262142, 131072, 7, 262141, 131072, 7, 262140, 131072, 7, 262139, 65536, 7, 196603, 65536, 6, 196604, 131072, 6, 196605, 131072, 6, 196606, 131072, 6, 196607, 131072, 6, 131072, 131072, 6, 131073, 131072, 6, 131074, 131072, 6, 5, 196608, 1, 65541, 196608, 6, 131077, 196608, 6, 65540, 131072, 6, 131076, 131072, 6, 196612, 131072, 7, 196613, 196608, 7, -131063, 131072, 1, -65527, 131072, 6, 9, 131072, 6, 10, 131072, 6, -65526, 131072, 6, -131062, 131072, 1, -131061, 131072, 1, -65525, 131072, 6, 11, 131072, 6, -131058, 131072, 0, -131057, 131072, 0, -131056, 131072, 0, -131055, 131072, 0, -131054, 131072, 0, -196590, 131072, 0, -196589, 131072, 0, -196588, 131072, 0, -196587, 131072, 0, -131051, 131072, 0, -65515, 131072, 0, -196583, 131072, 0, -196582, 131072, 0, -196581, 131072, 0, -131045, 131072, 0, -65509, 131072, 0, 4, 131072, 1, -131064, 65536, 1, -131060, 196608, 1, -65528, 65536, 6, 8, 65536, 6, 65544, 65536, 7, 65548, 196608, 7, 12, 196608, 6, -65524, 196608, 6, 65545, 131072, 7, 65546, 131072, 7, 65547, 131072, 7, -131052, 131072, 0, -65516, 131072, 0, -131053, 131072, 0, -65511, 131072, 0, -131047, 131072, 0, -131046, 131072, 0, -65510, 131072, 0, -65517, 131072, 0, -65518, 131072, 0, -65519, 131072, 0, -65520, 131072, 0, -65521, 131072, 0, -65522, 131072, 0)
 
 [node name="Cat" parent="." instance=ExtResource("7_1ct1y")]
 position = Vector2(192, -45)
@@ -700,8 +666,5 @@ position = Vector2(-41, 0)
 
 [node name="EndPoint" parent="Cat" index="3"]
 position = Vector2(36, 0)
-
-[node name="Player" parent="." instance=ExtResource("8_0drv3")]
-position = Vector2(-41, -46)
 
 [editable path="Cat"]
