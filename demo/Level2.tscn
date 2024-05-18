@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dcgnei4447io"]
 
 [ext_resource type="Texture2D" uid="uid://biwond464pw3f" path="res://demo/Tiles/tiles_packed.png" id="1_6wngx"]
-[ext_resource type="PackedScene" uid="uid://lsmhro8e3pof" path="res://scenes/Player.tscn" id="2_pin2w"]
+[ext_resource type="PackedScene" uid="uid://lsmhro8e3pof" path="res://scenes/player.tscn" id="2_pin2w"]
 [ext_resource type="PackedScene" uid="uid://clypgoui3ur0e" path="res://demo/Coin.tscn" id="3_oh20g"]
 [ext_resource type="PackedScene" uid="uid://lnclpxsaqdc1" path="res://demo/EndFlag.tscn" id="4_ps0av"]
 [ext_resource type="PackedScene" uid="uid://ce1eyj1cefd41" path="res://demo/Enemy.tscn" id="5_p06mj"]

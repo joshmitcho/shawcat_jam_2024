@@ -1,17 +1,17 @@
 [gd_scene load_steps=9 format=3 uid="uid://b8dojil2thlbk"]
 
-[ext_resource type="Script" path="res://scenes/play_screen.gd" id="1_byf4r"]
+[ext_resource type="Script" path="res://scripts/play_screen.gd" id="1_pt4ev"]
 [ext_resource type="PackedScene" uid="uid://bjjnwk4y14wm6" path="res://scenes/level_1.tscn" id="2_k42pm"]
 [ext_resource type="Script" path="res://scripts/shake_camera.gd" id="3_lwo3i"]
 [ext_resource type="Texture2D" uid="uid://ks2yidwlwthc" path="res://art/cave_bg.png" id="4_7b7yr"]
 [ext_resource type="Texture2D" uid="uid://m1cq5u4syuyq" path="res://art/light.png" id="5_1osqb"]
 [ext_resource type="Script" path="res://scripts/red_light.gd" id="6_k13e6"]
 [ext_resource type="PackedScene" uid="uid://b6kof4uc3yv1p" path="res://scenes/main_ui.tscn" id="7_cdevr"]
-[ext_resource type="PackedScene" uid="uid://lsmhro8e3pof" path="res://scenes/Player.tscn" id="8_q8c8v"]
+[ext_resource type="PackedScene" uid="uid://lsmhro8e3pof" path="res://scenes/player.tscn" id="8_mmmaf"]
 
 [node name="PlayScreen" type="Node2D"]
 process_mode = 3
-script = ExtResource("1_byf4r")
+script = ExtResource("1_pt4ev")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 ignore_rotation = false
@@ -48,7 +48,7 @@ offset_bottom = 116.0
 [node name="Level1" parent="." instance=ExtResource("2_k42pm")]
 process_mode = 1
 
-[node name="Player" parent="." instance=ExtResource("8_q8c8v")]
+[node name="Player" parent="." instance=ExtResource("8_mmmaf")]
 process_mode = 1
 position = Vector2(-41, -46)
 

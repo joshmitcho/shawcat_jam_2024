@@ -10,7 +10,7 @@ const JUMP_POWER := -300
 const OG_MAX_SPEED := 200
 const FRICTION := 25
 const MAX_JUMPS = 2
-const INPUT_FORCE = 10
+const INPUT_FORCE = 12
 
 var max_speed : float = OG_MAX_SPEED
 var current_jumps = 1

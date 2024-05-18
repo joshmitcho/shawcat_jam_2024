@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bl52jik52s3r1" path="res://art/cat_icon.png" id="1_wlc6b"]
 [ext_resource type="Script" path="res://scripts/squash_display.gd" id="2_lysa4"]
 [ext_resource type="FontFile" uid="uid://jt71p34t7mhb" path="res://titles pixel arial bold.TTF" id="2_rodds"]
-[ext_resource type="Script" path="res://scenes/pause_menu.gd" id="4_c8lb7"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="4_c8lb7"]
 
 [node name="Main UI" type="Control"]
 custom_minimum_size = Vector2(384, 216)
