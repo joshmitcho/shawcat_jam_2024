@@ -12,5 +12,5 @@ func _ready() -> void:
 func _on_ladder_entered(body):
 	if body.is_in_group("Player"):
 		print("ladder")
-		get_parent().ladder_reached.emit(ladder.global_position)
+		get_parent().get_parent().ladder_reached.emit(ladder.global_position)
 	#get_tree().change_scene_to_file("res://scenes/level_1.tscn")

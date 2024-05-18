@@ -8,8 +8,8 @@ class_name Player
 const START_MENU = preload("res://scenes/start_menu.tscn")
 
 const GRAVITY := Vector2(0, 12)
-const JUMP_POWER := 250
-const OG_MAX_SPEED := 150
+const JUMP_POWER := 300
+const OG_MAX_SPEED := 200
 const FRICTION := 15
 const MAX_JUMPS = 2
 const INPUT_FORCE = 12

@@ -46,11 +46,10 @@ offset_top = -100.0
 offset_right = 184.0
 offset_bottom = 116.0
 
-[node name="Level1" parent="." instance=ExtResource("2_k42pm")]
-process_mode = 1
+[node name="Levels" type="Node2D" parent="."]
+
+[node name="Level1" parent="Levels" instance=ExtResource("2_k42pm")]
 
 [node name="Player" parent="." instance=ExtResource("8_mmmaf")]
-process_mode = 1
-position = Vector2(-41, -46)
 
 [editable path="Camera2D/Main UI"]
