@@ -15,12 +15,12 @@ script = ExtResource("1_pt4ev")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 ignore_rotation = false
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
 script = ExtResource("3_lwo3i")
 target = NodePath("../Player")
 
 [node name="BG" type="Sprite2D" parent="Camera2D"]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("4_7b7yr")
 
 [node name="PointLight2D" type="PointLight2D" parent="Camera2D/BG"]

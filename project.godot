@@ -18,9 +18,12 @@ config/icon="res://icon.svg"
 [autoload]
 
 CatController="*res://scripts/cat_controller.gd"
+SoundManager="*res://scripts/sound_manager.gd"
 
 [display]
 
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/stretch/mode="viewport"
 
 [input]

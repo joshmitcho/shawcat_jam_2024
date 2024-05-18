@@ -3,10 +3,15 @@ extends TextureRect
 
 const PLAY_SCREEN = preload("res://scenes/play_screen.tscn")
 
-@onready var bg_music: AudioStreamPlayer = $BGMusic
+
+func _ready() -> void:
+	SoundManager.play_soundscape(load("res://sound/creepo.mp3"), 0.0)
 
 
 func start_game() -> void:
+	var tween := get_tree().create_tween()
+	tween.tween_property(self, "modulate", Color.BLACK, 2.0)
+	await tween.finished
 	get_tree().change_scene_to_packed(PLAY_SCREEN)
 
 

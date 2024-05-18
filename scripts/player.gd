@@ -6,9 +6,9 @@ class_name Player
 @onready var sprite: AnimatedSprite2D = $Sprite
 
 const GRAVITY := Vector2(0, 12)
-const JUMP_POWER := -300
-const OG_MAX_SPEED := 200
-const FRICTION := 25
+const JUMP_POWER := 250
+const OG_MAX_SPEED := 150
+const FRICTION := 15
 const MAX_JUMPS = 2
 const INPUT_FORCE = 12
 
@@ -23,25 +23,24 @@ func _ready() -> void:
 
 
 func _physics_process(delta):
-	var input_dir = Vector2.ZERO
+	var input_dir: Vector2
 	
 	input_dir.x = Input.get_axis("ui_left", "ui_right")
 	if input_dir.x > 0:
 		sprite.flip_h = false
 	elif input_dir.x < 0:
 		sprite.flip_h = true
-
+	
 	var net_force: Vector2 = input_dir.normalized() * INPUT_FORCE
 	net_force += GRAVITY
-	print(velocity)
+	if velocity.y > 0:
+		net_force += GRAVITY
 	
 	if (is_on_floor() and (
 		(input_dir.x >= 0 and velocity.x < 0)
 		or (input_dir.x <= 0 and velocity.x > 0))
 	):
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
-		
-	
 	
 	velocity += net_force
 	
@@ -50,13 +49,19 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("ui_up"):
 		if current_jumps < MAX_JUMPS:
-			velocity.y = JUMP_POWER
+			velocity.y = -JUMP_POWER
 			current_jumps = current_jumps + 1
 		elif current_jumps > MAX_JUMPS:
 			current_jumps = 1
 	
 	if is_on_floor():
 		current_jumps = 1
+		if input_dir.x == 0:
+			sprite.play("idle")
+		else:
+			sprite.play("walk")
+	else:
+		sprite.play("air")
 	
 	move_and_slide()
 	

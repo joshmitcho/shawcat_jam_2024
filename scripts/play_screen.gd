@@ -7,6 +7,9 @@ extends Node2D
 
 func _ready() -> void:
 	unpause()
+	modulate = Color.BLACK
+	var tween := get_tree().create_tween()
+	tween.tween_property(self, "modulate", Color.WHITE, 2.0)
 
 
 func _physics_process(delta: float) -> void:

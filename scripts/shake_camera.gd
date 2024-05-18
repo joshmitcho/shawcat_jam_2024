@@ -1,7 +1,7 @@
 extends Camera2D
 
 
-var max_offset = Vector2(10, 10)  # Maximum hor/ver shake in pixels.
+var max_offset = Vector2(5, 5)  # Maximum hor/ver shake in pixels.
 var max_roll = 0.1  # Maximum rotation in radians (use sparingly).
 @export var target: NodePath  # Assign the node this camera will follow.
 
