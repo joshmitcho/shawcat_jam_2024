@@ -11,6 +11,8 @@ var move_speed : float = og_move_speed
 var jump_force : float = 200.0
 var gravity : float = 500.0
 
+var flying: bool = false
+
 
 func _ready() -> void:
 	start_point = $StartPoint.global_position
@@ -22,8 +24,16 @@ func _physics_process(delta: float):
 	global_position = global_position.move_toward(target_point, move_speed * delta)
 	
 	if CatController.swarming:
-		target_point = CatController.player.global_position
-		move_speed = og_move_speed * 3
+		if flying:
+			target_point = CatController.player.global_position
+			move_speed = og_move_speed * 3
+		else:
+			if global_position < CatController.player.global_position:
+				velocity.x = og_move_speed
+				move_and_slide()
+			else:
+				velocity.x = -og_move_speed
+				move_and_slide()
 	else:
 		move_speed = og_move_speed
 		

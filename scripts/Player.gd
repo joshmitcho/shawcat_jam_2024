@@ -1,13 +1,19 @@
+#player.gd
 extends CharacterBody2D
 class_name Player
 
 @onready var smoke: Sprite2D = $Smoke
+@onready var sprite: AnimatedSprite2D = $Sprite
 
-const OG_MOVE_SPEED: float = 100.0
-var move_speed : float = OG_MOVE_SPEED
-var jump_force : float = 200.0
-var gravity : float = 500.0
+const GRAVITY := Vector2(0, 12)
+const JUMP_POWER := -300
+const OG_MAX_SPEED := 200
+const FRICTION := 25
+const MAX_JUMPS = 2
+const INPUT_FORCE = 10
 
+var max_speed : float = OG_MAX_SPEED
+var current_jumps = 1
 
 func _ready() -> void:
 	CatController.player = self
@@ -16,23 +22,42 @@ func _ready() -> void:
 	CatController.swarm_end.connect(smoke_end)
 
 
-func _physics_process(delta: float):
-	# gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
-		
-	velocity.x = 0
+func _physics_process(delta):
+	var input_dir = Vector2.ZERO
 	
-	# move left.
-	if Input.is_key_pressed(KEY_LEFT):
-		velocity.x -= move_speed
-	# move right.
-	if Input.is_key_pressed(KEY_RIGHT):
-		velocity.x += move_speed
+	input_dir.x = Input.get_axis("ui_left", "ui_right")
+	if input_dir.x > 0:
+		sprite.flip_h = false
+	elif input_dir.x < 0:
+		sprite.flip_h = true
+
+	var net_force: Vector2 = input_dir.normalized() * INPUT_FORCE
+	net_force += GRAVITY
+	print(velocity)
+	
+	if (is_on_floor() and (
+		(input_dir.x >= 0 and velocity.x < 0)
+		or (input_dir.x <= 0 and velocity.x > 0))
+	):
+		velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 		
-	if Input.is_key_pressed(KEY_SPACE) and is_on_floor():
-		velocity.y = -jump_force
-		
+	
+	
+	velocity += net_force
+	
+	velocity = velocity.clamp(Vector2(-max_speed, -500), Vector2(max_speed, 500))
+	
+
+	if Input.is_action_just_pressed("ui_up"):
+		if current_jumps < MAX_JUMPS:
+			velocity.y = JUMP_POWER
+			current_jumps = current_jumps + 1
+		elif current_jumps > MAX_JUMPS:
+			current_jumps = 1
+	
+	if is_on_floor():
+		current_jumps = 1
+	
 	move_and_slide()
 	
 	smoke.rotate(delta * 3)
@@ -42,18 +67,26 @@ func _physics_process(delta: float):
 		game_over()
 
 
+# For future use
+func play_animation():
+	pass
+
+
 func smoke_start() -> void:
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(smoke, "scale", Vector2(0.5, 0.5), 0.5)
-	move_speed = OG_MOVE_SPEED / 3.0
+	max_speed = OG_MAX_SPEED / 3.0
 
 
 func smoke_end() -> void:
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(smoke, "scale", Vector2.ZERO, 0.5)
-	move_speed = OG_MOVE_SPEED
+	max_speed = OG_MAX_SPEED
 
 
 # restarts the current scene.
 func game_over ():
 	get_tree().reload_current_scene.call_deferred()
+
+
+

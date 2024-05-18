@@ -15,7 +15,7 @@ script = ExtResource("1_byf4r")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 ignore_rotation = false
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
 script = ExtResource("3_lwo3i")
 target = NodePath("../Player")
 
