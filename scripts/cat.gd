@@ -13,7 +13,6 @@ var move_speed : float = og_move_speed
 var jump_force : float = 200.0
 var gravity : float = 500.0
 
-var flying: bool = false
 var swarming: bool = false
 
 
@@ -26,22 +25,14 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float):
-	
+	velocity.y += 12 #gravity
 	if swarming:
-		if flying:
-			target_point = CatController.player.global_position
-			move_speed = og_move_speed * 3
-			global_position = global_position.move_toward(target_point, move_speed * delta)
-		else:
-			if global_position < CatController.player.global_position:
-				velocity.x = og_move_speed
+		if global_position < CatController.player.global_position:
+			velocity.x = og_move_speed
 
-				print("move right: ", velocity)
-			else:
-				velocity.x = -og_move_speed
-				print("move left")
-			velocity.y += 12
-			move_and_slide()
+		else:
+			velocity.x = -og_move_speed
+		move_and_slide()
 	else:
 		move_speed = og_move_speed
 		global_position = global_position.move_toward(target_point, move_speed * delta)
@@ -54,16 +45,16 @@ func _physics_process(delta: float):
 	
 	if target_point.x > global_position.x or velocity.x > 0:
 		sprite.flip_h = false
-	elif target_point.x < global_position.x or velocity.x < 0:
+	if target_point.x < global_position.x or velocity.x < 0:
 		sprite.flip_h = true
 
 
 func start_swarm() -> void:
-	if (global_position - CatController.player.global_position).length() < 400:
-		swarming = true
-		sprite.play("transform")
-		await sprite.animation_finished
-		sprite.play("walk_transformed")
+	#if (global_position - CatController.player.global_position).length() < 400:
+	swarming = true
+	sprite.play("transform")
+	await sprite.animation_finished
+	sprite.play("walk_transformed")
 
 
 func end_swarm() -> void:

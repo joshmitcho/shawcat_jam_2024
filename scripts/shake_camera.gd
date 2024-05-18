@@ -19,16 +19,12 @@ func _ready() -> void:
 
 
 func swarm_start():
-	add_trauma(0.5)
+	trauma = 0.5
 	decay = 0
 
 
 func swarm_end():
 	decay = 0.8
-
-
-func add_trauma(amount: float) -> void:
-	trauma = min(trauma + amount, 1.0)
 
 
 func _physics_process(delta: float) -> void:

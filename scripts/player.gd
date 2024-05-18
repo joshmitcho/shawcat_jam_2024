@@ -5,6 +5,8 @@ class_name Player
 @onready var smoke: Sprite2D = $Smoke
 @onready var sprite: AnimatedSprite2D = $Sprite
 
+const START_MENU = preload("res://scenes/start_menu.tscn")
+
 const GRAVITY := Vector2(0, 12)
 const JUMP_POWER := 250
 const OG_MAX_SPEED := 150
@@ -15,14 +17,21 @@ const INPUT_FORCE = 12
 var max_speed : float = OG_MAX_SPEED
 var current_jumps = 1
 
+var in_control: bool = true
+
 func _ready() -> void:
 	CatController.player = self
 	smoke.scale = Vector2.ZERO
 	CatController.smoke_start.connect(smoke_start)
 	CatController.swarm_end.connect(smoke_end)
+	get_parent().ladder_reached.connect(climb_ladder)
 
 
 func _physics_process(delta):
+	move_and_slide()
+	if not in_control:
+		return
+	
 	var input_dir: Vector2
 	
 	input_dir.x = Input.get_axis("ui_left", "ui_right")
@@ -45,7 +54,6 @@ func _physics_process(delta):
 	velocity += net_force
 	
 	velocity = velocity.clamp(Vector2(-max_speed, -500), Vector2(max_speed, 500))
-	
 
 	if Input.is_action_just_pressed("ui_up"):
 		if current_jumps < MAX_JUMPS:
@@ -63,8 +71,6 @@ func _physics_process(delta):
 	else:
 		sprite.play("air")
 	
-	move_and_slide()
-	
 	smoke.rotate(delta * 3)
 	
 	# game over if we fall below the level.
@@ -72,9 +78,11 @@ func _physics_process(delta):
 		game_over()
 
 
-# For future use
-func play_animation():
-	pass
+func climb_ladder(ladder_position: Vector2) -> void:
+	in_control = false
+	global_position = ladder_position
+	velocity = Vector2(0, -100)
+	sprite.play("climb")
 
 
 func smoke_start() -> void:
@@ -91,7 +99,7 @@ func smoke_end() -> void:
 
 # restarts the current scene.
 func game_over ():
-	get_tree().reload_current_scene.call_deferred()
+	get_tree().change_scene_to_packed(START_MENU)
 
 
 

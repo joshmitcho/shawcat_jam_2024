@@ -6,7 +6,7 @@ signal swarm_start()
 signal swarm_end()
 signal smoke_start()
 
-const CAT = preload("res://scenes/cat.tscn")
+#const CAT = preload("res://scenes/cat.tscn")
 
 var squash_count: int = 0
 var swarming: bool = false
@@ -39,15 +39,6 @@ func start_swarm():
 	
 	var swarm_timer := get_tree().create_timer(5)
 	swarm_start.emit()
-	await get_tree().create_timer(1).timeout
-	
-	#for i in range(30):
-		#var new_cat = CAT.instantiate()
-		#var new_cat_offset: Vector2 = Vector2(100 + randi_range(0, 200), 100 + randi_range(0, 200))
-		#new_cat.global_position = player.global_position + new_cat_offset.rotated(randf_range(0, 6))
-		#new_cat.flying = true
-		#current_level.add_child.call_deferred(new_cat)
-		#await get_tree().create_timer(0.01).timeout
 	
 	await swarm_timer.timeout
 	

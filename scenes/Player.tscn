@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://lsmhro8e3pof"]
+[gd_scene load_steps=20 format=3 uid="uid://lsmhro8e3pof"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6uaer"]
 [ext_resource type="Texture2D" uid="uid://vwqcgwnij5jd" path="res://art/smoke.png" id="3_16xdv"]
@@ -7,6 +7,22 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_nonbd"]
 atlas = ExtResource("3_u4ua3")
 region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1drqf"]
+atlas = ExtResource("3_u4ua3")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vfs1"]
+atlas = ExtResource("3_u4ua3")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4w3o"]
+atlas = ExtResource("3_u4ua3")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkxg4"]
+atlas = ExtResource("3_u4ua3")
+region = Rect2(96, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h2j76"]
 atlas = ExtResource("3_u4ua3")
@@ -56,6 +72,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_1drqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vfs1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4w3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkxg4")
+}],
+"loop": true,
+"name": &"climb",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_h2j76")
 }],
 "loop": false,
@@ -100,8 +133,10 @@ script = ExtResource("1_6uaer")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_d5sup")
-animation = &"air"
+animation = &"climb"
 autoplay = "idle"
+frame = 3
+frame_progress = 0.890083
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_84wg0")

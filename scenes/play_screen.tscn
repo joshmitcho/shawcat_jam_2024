@@ -15,12 +15,12 @@ script = ExtResource("1_pt4ev")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 ignore_rotation = false
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
 script = ExtResource("3_lwo3i")
 target = NodePath("../Player")
 
 [node name="BG" type="Sprite2D" parent="Camera2D"]
-scale = Vector2(2.5, 2.5)
+scale = Vector2(2, 2)
 texture = ExtResource("4_7b7yr")
 
 [node name="PointLight2D" type="PointLight2D" parent="Camera2D/BG"]
@@ -40,6 +40,7 @@ texture_scale = 3.0
 script = ExtResource("6_k13e6")
 
 [node name="Main UI" parent="Camera2D" instance=ExtResource("7_cdevr")]
+z_index = 5
 offset_left = -200.0
 offset_top = -100.0
 offset_right = 184.0

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://lsmhro8e3pof" path="res://scenes/player.tscn" id="2_st7mb"]
 [ext_resource type="PackedScene" uid="uid://ce1eyj1cefd41" path="res://demo/Enemy.tscn" id="4_120s6"]
 [ext_resource type="PackedScene" uid="uid://3u8dr7bslrw1" path="res://demo/Spikes.tscn" id="5_pr0vk"]
-[ext_resource type="PackedScene" uid="uid://lnclpxsaqdc1" path="res://demo/EndFlag.tscn" id="6_d5yq1"]
+[ext_resource type="PackedScene" uid="uid://lnclpxsaqdc1" path="res://scenes/ladder.tscn" id="6_d5yq1"]
 [ext_resource type="PackedScene" uid="uid://clypgoui3ur0e" path="res://demo/Coin.tscn" id="6_p16xq"]
 
 [sub_resource type="TileSet" id="TileSet_3ysrq"]

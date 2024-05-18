@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cdccq5ys3hdbr"]
+[gd_scene load_steps=19 format=3 uid="uid://cdccq5ys3hdbr"]
 
 [ext_resource type="Script" path="res://scripts/cat.gd" id="1_kjwvo"]
 [ext_resource type="Texture2D" uid="uid://br5jo8tjcfaal" path="res://art/catsprites.png" id="2_8domf"]
@@ -112,21 +112,23 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7lrje"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spn1d"]
 size = Vector2(12, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7lrje"]
+size = Vector2(14, 6)
 
 [node name="Cat" type="CharacterBody2D"]
 script = ExtResource("1_kjwvo")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_sppog")
-animation = &"walk_transformed"
+animation = &"walk"
 autoplay = "walk"
-frame_progress = 0.241755
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_7lrje")
+shape = SubResource("RectangleShape2D_spn1d")
 
 [node name="StartPoint" type="Marker2D" parent="."]
 
