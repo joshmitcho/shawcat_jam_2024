@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6kof4uc3yv1p"]
+[gd_scene load_steps=7 format=3 uid="uid://b6kof4uc3yv1p"]
 
+[ext_resource type="Script" path="res://scenes/main_ui.gd" id="1_smbsj"]
 [ext_resource type="Script" path="res://scripts/squash_display.gd" id="2_lysa4"]
 [ext_resource type="Texture2D" uid="uid://br5jo8tjcfaal" path="res://art/catsprites.png" id="3_gx7mr"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="4_c8lb7"]
@@ -19,6 +20,7 @@ offset_right = -768.0
 offset_bottom = -432.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_smbsj")
 
 [node name="SquashDisplay" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(128, 48)
@@ -78,6 +80,20 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("5_5gtu6")
 theme_override_font_sizes/font_size = 24
 text = "Quit"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 17
+
+[node name="Timer" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("5_5gtu6")
+theme_override_font_sizes/font_size = 20
+text = "00:00"
 
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Unpause" to="PauseMenu" method="unpause"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Quit" to="PauseMenu" method="quit"]

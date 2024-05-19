@@ -38,6 +38,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta):
+	if Input.is_action_just_pressed("restart"):
+		restart()
+	
 	if spin > 0:
 		rotate(spin * delta)
 	
@@ -96,7 +99,7 @@ func _physics_process(delta):
 	smoke.rotate(delta * 3)
 	
 	# game over if we fall below the level.
-	if global_position.y > 200:
+	if global_position.y > 300:
 		restart()
 
 
@@ -108,7 +111,7 @@ func cutscene() -> void:
 func climb_ladder(ladder_position: Vector2) -> void:
 	SoundManager.play_sfx(CLIMB, 1.1, 6)
 	in_control = false
-	global_position = ladder_position
+	global_position.x = ladder_position.x
 	velocity = Vector2(0, -100)
 	sprite.play("climb")
 
@@ -137,6 +140,8 @@ func game_over ():
 		CatController.squash_count = 0
 		CatController.update_squash_display.emit(0)
 		CatController.player_died_to_swarm = true
+		CatController.swarm_end.emit()
+		CatController.die.emit()
 		get_tree().change_scene_to_packed(START_MENU)
 
 

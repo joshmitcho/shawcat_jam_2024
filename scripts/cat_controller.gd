@@ -6,6 +6,8 @@ signal swarm_start()
 signal swarm_end()
 signal smoke_start()
 
+signal die()
+
 const SWARM = preload("res://sound/you_made_them_angry.wav")
 const WRATH = preload("res://sound/wrath.mp3")
 const MEOWSERS = preload("res://sound/meowsers1.mp3")
@@ -16,10 +18,6 @@ var swarming: bool = false
 var player: Player
 
 var player_died_to_swarm: bool = false
-
-
-func _ready() -> void:
-	pass # Replace with function body.
 
 
 func cat_squashed() -> void:

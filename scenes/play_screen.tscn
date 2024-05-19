@@ -23,7 +23,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_c6gm2")
 
 [node name="PointLight2D" type="PointLight2D" parent="Camera2D/BG"]
-position = Vector2(-170.667, -0.666667)
+position = Vector2(-580.667, -0.667)
 scale = Vector2(0.666667, 0.666667)
 color = Color(1, 0, 0, 1)
 texture = ExtResource("5_1osqb")
@@ -31,7 +31,7 @@ texture_scale = 3.0
 script = ExtResource("6_k13e6")
 
 [node name="PointLight2D2" type="PointLight2D" parent="Camera2D/BG"]
-position = Vector2(170.667, 0)
+position = Vector2(570.667, 0)
 scale = Vector2(0.666667, 0.666667)
 color = Color(1, 0, 0, 1)
 texture = ExtResource("5_1osqb")

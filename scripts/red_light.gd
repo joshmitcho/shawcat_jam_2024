@@ -11,7 +11,7 @@ func _ready() -> void:
 
 func swarm_start():
 	var tween := get_tree().create_tween()
-	tween.tween_property(self, "energy", 1, 0.5)
+	tween.tween_property(self, "energy", 10, 0.5)
 
 
 func swarm_end():
