@@ -29,7 +29,7 @@ func swarm_end():
 
 func _physics_process(delta: float) -> void:
 	if target:
-		global_position = get_node(target).global_position
+		global_position = get_node(target).global_position + Vector2(0, -20)
 	if trauma:
 		trauma = max(trauma - decay * delta, 0)
 		shake()

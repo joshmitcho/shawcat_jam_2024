@@ -10,6 +10,7 @@ signal ladder_reached(ladder_position: Vector2)
 
 var current_level: int = 0
 var levels: Array[PackedScene] = [
+	preload("res://scenes/level_tutorial.tscn"),
 	preload("res://scenes/level_1.tscn"),
 	preload("res://scenes/level_2.tscn")
 ]

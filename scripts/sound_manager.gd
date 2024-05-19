@@ -1,7 +1,7 @@
 # sound_manager.gd
 extends Node
 
-var sfx_pitches: Array[float] = [0.943874, 1.0, 1.059463, 1.122455, 1.33484]
+var sfx_pitches: Array[float] = [0.749, 0.943874, 1.0, 1.059463, 1.122455]
 var sfx_pitch_index: int = 0
 
 var soundscape_player: AudioStreamPlayer = AudioStreamPlayer.new()
