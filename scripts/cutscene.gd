@@ -15,7 +15,7 @@ func start_cutscene(body) -> void:
 		
 		extra_tiles.queue_free()
 		hero.play("shock")
-		SoundManager.play_sfx(CRUMBLING_GROUND)
+		SoundManager.play_sfx(CRUMBLING_GROUND, 1.05)
 		body.spin = 3
 		var tween: Tween = get_tree().create_tween()
 		tween.tween_property(body, "position", body.position + Vector2(0, 300), 1.0)

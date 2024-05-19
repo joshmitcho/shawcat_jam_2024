@@ -10,8 +10,8 @@ func _ready() -> void:
 	player = CatController.player
 	player.in_control = false
 	player.velocity = Vector2.ZERO
-	player.spin = 3
-	
+	player.spin = 6
+	CatController.player_died_to_swarm = false
 	SoundManager.play_sfx(FALLIN, 0.9, -8)
 
 	

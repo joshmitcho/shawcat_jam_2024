@@ -97,7 +97,7 @@ func _physics_process(delta):
 	
 	# game over if we fall below the level.
 	if global_position.y > 200:
-		game_over()
+		restart()
 
 
 func cutscene() -> void:
@@ -115,8 +115,10 @@ func climb_ladder(ladder_position: Vector2) -> void:
 
 func smoke_start() -> void:
 	var tween: Tween = get_tree().create_tween()
-	tween.tween_property(smoke, "scale", Vector2(0.5, 0.5), 0.5)
+	tween.tween_property(smoke, "scale", Vector2(2,2), 0.5)
 	max_speed = OG_MAX_SPEED / 3.0
+	await get_tree().create_timer(4).timeout
+	game_over()
 
 
 func smoke_end() -> void:
@@ -125,9 +127,17 @@ func smoke_end() -> void:
 	max_speed = OG_MAX_SPEED
 
 
+func restart():
+	CatController.player.global_position = Vector2.ZERO
+
+
 # restarts the current scene.
 func game_over ():
-	get_tree().change_scene_to_packed(START_MENU)
+	if not CatController.player_died_to_swarm:
+		CatController.squash_count = 0
+		CatController.update_squash_display.emit(0)
+		CatController.player_died_to_swarm = true
+		get_tree().change_scene_to_packed(START_MENU)
 
 
 

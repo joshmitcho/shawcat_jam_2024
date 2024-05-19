@@ -9,6 +9,9 @@ signal cutscene_start()
 @onready var levels_container: Node = $Levels
 @onready var player: Player = $Player
 @onready var squash_display: HBoxContainer = $"Camera2D/Main UI/SquashDisplay"
+@onready var bg: Sprite2D = $Camera2D/BG
+
+const CUTE_BG = preload("res://art/falling_bg.png")
 
 var current_level: int = 0
 var levels: Array[PackedScene] = [
@@ -16,12 +19,24 @@ var levels: Array[PackedScene] = [
 	preload("res://scenes/level_falling.tscn"),
 	preload("res://scenes/level_1.tscn"),
 	preload("res://scenes/level_2.tscn"),
-	preload("res://scenes/level_3.tscn")
+	preload("res://scenes/level_3.tscn"),
+	preload("res://scenes/level_4.tscn"),
+	preload("res://scenes/level_5.tscn"),
+	preload("res://scenes/level_6.tscn"),
+	preload("res://scenes/level_tbc.tscn")
 ]
 
 
 func _ready() -> void:
-	print(current_level)
+	player.global_position = Vector2.ZERO
+	player.spin = 0
+	player.rotation = 0
+	player.sprite.flip_h = true
+	player.in_control = true
+	
+	var new_level = levels[current_level].instantiate()
+	levels_container.add_child(new_level)
+	
 	squash_display.hide()
 	unpause()
 	modulate = Color.BLACK
@@ -47,6 +62,7 @@ func next_level(_lp) -> void:
 	var old_level = levels_container.get_child(0)
 	old_level.queue_free()
 	
+	bg.texture = CUTE_BG
 	squash_display.show()
 	player.global_position = Vector2.ZERO
 	player.spin = 0

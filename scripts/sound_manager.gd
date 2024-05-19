@@ -48,7 +48,8 @@ func play_sfx(sfx: AudioStream, pitch: float = 1.0, volume: float = 0) -> void:
 	var sfx_player: AudioStreamPlayer = AudioStreamPlayer.new()
 	add_child(sfx_player)
 	sfx_player.set_stream(sfx)
-	sfx_player.set_pitch_scale(pitch)
+	if pitch > 1.05 or pitch < 0.95:
+		sfx_player.set_pitch_scale(pitch)
 	sfx_player.set_volume_db(volume)
 	sfx_player.play()
 	await sfx_player.finished

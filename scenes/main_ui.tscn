@@ -34,6 +34,8 @@ script = ExtResource("2_lysa4")
 
 [node name="SquashCount" type="Label" parent="SquashDisplay"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
 theme_override_fonts/font = ExtResource("5_5gtu6")
 theme_override_font_sizes/font_size = 34
 text = "0/5"

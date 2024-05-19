@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2vuvbdpnh2uw"]
+[gd_scene load_steps=8 format=3 uid="uid://ehsxstvdjuv1"]
 
-[ext_resource type="Script" path="res://scripts/animated_text.gd" id="1_layrd"]
-[ext_resource type="FontFile" uid="uid://bpjtmmxxat1d3" path="res://HellghostRough-Regular.ttf" id="2_l5aey"]
+[ext_resource type="Script" path="res://scripts/animated_text.gd" id="1_gp0pr"]
+[ext_resource type="FontFile" uid="uid://bpjtmmxxat1d3" path="res://HellghostRough-Regular.ttf" id="2_a1pf4"]
 
 [sub_resource type="Animation" id="Animation_orv4q"]
 length = 0.001
@@ -56,25 +56,25 @@ _data = {
 "show": SubResource("Animation_pvetl")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbvsq"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6xj68"]
 size = Vector2(20, 221)
 
-[node name="TutorialLeftRight" type="Node2D"]
+[node name="TutorialGetHome" type="Node2D"]
 
 [node name="Animated text" type="Node2D" parent="."]
-script = ExtResource("1_layrd")
+script = ExtResource("1_gp0pr")
 
 [node name="Label" type="Label" parent="Animated text"]
-offset_left = 143.0
-offset_top = 13.0
-offset_right = 344.0
-offset_bottom = 124.0
+offset_left = 145.0
+offset_top = 69.0
+offset_right = 346.0
+offset_bottom = 180.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 12
-theme_override_fonts/font = ExtResource("2_l5aey")
+theme_override_fonts/font = ExtResource("2_a1pf4")
 theme_override_font_sizes/font_size = 21
-text = "A HERO has broken into Hell! Stop them at ALL COSTS!
-Move left and right with the ARROW KEYS"
+text = "Where am I?
+I have to get home"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -87,6 +87,6 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Animated text/Area2D"]
 position = Vector2(244, 96)
-shape = SubResource("RectangleShape2D_gbvsq")
+shape = SubResource("RectangleShape2D_6xj68")
 
 [connection signal="body_entered" from="Animated text/Area2D" to="Animated text" method="_on_area_2d_body_entered"]

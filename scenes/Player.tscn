@@ -140,5 +140,4 @@ autoplay = "idle"
 shape = SubResource("RectangleShape2D_84wg0")
 
 [node name="Smoke" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_16xdv")
