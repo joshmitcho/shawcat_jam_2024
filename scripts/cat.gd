@@ -2,6 +2,8 @@
 class_name Cat
 extends CharacterBody2D
 
+const SQUEESH = preload("res://sound/squeesh2.wav")
+
 @onready var sprite: AnimatedSprite2D = $Sprite
 
 var start_point: Vector2
@@ -72,5 +74,6 @@ func _on_body_entered(body):
 		if CatController.swarming:
 			CatController.smoke_start.emit()
 		else:
+			SoundManager.play_shuffled_pitch_sfx(SQUEESH)
 			CatController.cat_squashed()
 		queue_free()

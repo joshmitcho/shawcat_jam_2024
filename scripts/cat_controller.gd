@@ -6,13 +6,12 @@ signal swarm_start()
 signal swarm_end()
 signal smoke_start()
 
-#const CAT = preload("res://scenes/cat.tscn")
+const SWARM = preload("res://sound/you_made_them_angry.wav")
 
 var squash_count: int = 0
 var swarming: bool = false
 
 var player: Player
-var current_level: Level
 
 
 func _ready() -> void:
@@ -35,6 +34,7 @@ func cat_squashed() -> void:
 
 
 func start_swarm():
+	SoundManager.play_sfx(SWARM, -5)
 	swarming = true
 	
 	var swarm_timer := get_tree().create_timer(5)

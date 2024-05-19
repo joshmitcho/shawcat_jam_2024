@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=3 uid="uid://04xyld3ukyu5"]
+
+[ext_resource type="Script" path="res://scripts/animated_text.gd" id="1_gy4tq"]
+[ext_resource type="FontFile" uid="uid://bpjtmmxxat1d3" path="res://HellghostRough-Regular.ttf" id="2_6g8wa"]
+
+[sub_resource type="Animation" id="Animation_orv4q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_8ve3i"]
+resource_name = "hide"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_pvetl"]
+resource_name = "show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.7, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0px7t"]
+_data = {
+"RESET": SubResource("Animation_orv4q"),
+"hide": SubResource("Animation_8ve3i"),
+"show": SubResource("Animation_pvetl")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6xj68"]
+size = Vector2(20, 221)
+
+[node name="TutorialReveal" type="Node2D"]
+
+[node name="Animated text" type="Node2D" parent="."]
+script = ExtResource("1_gy4tq")
+
+[node name="Label" type="Label" parent="Animated text"]
+offset_left = 145.0
+offset_top = 69.0
+offset_right = 346.0
+offset_bottom = 180.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 12
+theme_override_fonts/font = ExtResource("2_6g8wa")
+theme_override_font_sizes/font_size = 21
+text = "Stop right there, HERO!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animated text"]
+libraries = {
+"": SubResource("AnimationLibrary_0px7t")
+}
+
+[node name="Area2D" type="Area2D" parent="Animated text"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animated text/Area2D"]
+position = Vector2(244, 96)
+shape = SubResource("RectangleShape2D_6xj68")
+
+[connection signal="body_entered" from="Animated text/Area2D" to="Animated text" method="_on_area_2d_body_entered"]

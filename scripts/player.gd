@@ -6,8 +6,10 @@ class_name Player
 @onready var sprite: AnimatedSprite2D = $Sprite
 
 const STOMP = preload("res://sound/stomp.wav")
+const WOOSH = preload("res://sound/woosh.wav")
 const LAND = preload("res://sound/land.wav")
 const START_MENU = preload("res://scenes/start_menu.tscn")
+const CLIMB = preload("res://sound/climb.wav")
 
 const GRAVITY := Vector2(0, 12)
 const JUMP_POWER := 300
@@ -24,6 +26,7 @@ var last_stomp_time: int = 0
 var time_between_stomps := 500
 
 var in_control: bool = true
+var spin: float = 0
 
 func _ready() -> void:
 	CatController.player = self
@@ -31,10 +34,15 @@ func _ready() -> void:
 	CatController.smoke_start.connect(smoke_start)
 	CatController.swarm_end.connect(smoke_end)
 	get_parent().ladder_reached.connect(climb_ladder)
+	get_parent().cutscene_start.connect(cutscene)
 
 
 func _physics_process(delta):
+	if spin > 0:
+		rotate(spin * delta)
+	
 	move_and_slide()
+	
 	if not in_control:
 		return
 	
@@ -64,6 +72,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_up"):
 		if current_jumps < MAX_JUMPS:
 			velocity.y = -JUMP_POWER
+			SoundManager.play_shuffled_pitch_sfx(WOOSH)
 			current_jumps = current_jumps + 1
 		elif current_jumps > MAX_JUMPS:
 			current_jumps = 1
@@ -71,7 +80,7 @@ func _physics_process(delta):
 	if is_on_floor():
 		if not was_on_floor:
 			was_on_floor = true
-			SoundManager.play_shuffled_pitch_sfx(LAND, -6)
+			SoundManager.play_shuffled_pitch_sfx(LAND, -10)
 		current_jumps = 1
 		if input_dir.x == 0:
 			sprite.play("idle")
@@ -79,7 +88,7 @@ func _physics_process(delta):
 			sprite.play("walk")
 			if Time.get_ticks_msec() - last_stomp_time > time_between_stomps:
 				last_stomp_time = Time.get_ticks_msec()
-				SoundManager.play_shuffled_pitch_sfx(STOMP, -6)
+				SoundManager.play_shuffled_pitch_sfx(STOMP, -8)
 	else:
 		was_on_floor = false
 		sprite.play("air")
@@ -91,7 +100,13 @@ func _physics_process(delta):
 		game_over()
 
 
+func cutscene() -> void:
+	velocity = Vector2(0, 500)
+	in_control = false
+
+
 func climb_ladder(ladder_position: Vector2) -> void:
+	SoundManager.play_sfx(CLIMB, 1.1, 6)
 	in_control = false
 	global_position = ladder_position
 	velocity = Vector2(0, -100)

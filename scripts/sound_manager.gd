@@ -15,9 +15,9 @@ func _ready() -> void:
 
 func play_soundscape(soundscape: AudioStream, volume: float) -> void:
 	if soundscape_player.is_playing() and soundscape_player.get_stream() != soundscape:
-		dip_fade(soundscape_player, soundscape, volume, randf_range(0, soundscape.get_length()))
+		dip_fade(soundscape_player, soundscape, volume, 0)
 	else:
-		fade_in(soundscape_player, soundscape, volume, randf_range(0, soundscape.get_length()))
+		fade_in(soundscape_player, soundscape, volume, 0)
 
 
 func dip_fade(player: AudioStreamPlayer, sound: AudioStream, volume: float, offset: float) -> void:

@@ -10,7 +10,6 @@ var swarming_icon_rect: Rect2 = Rect2(0, 81, 16, 16)
 
 
 func _ready() -> void:
-	update_squash_display(0)
 	CatController.update_squash_display.connect(update_squash_display)
 	CatController.swarm_start.connect(swarm_start)
 	CatController.swarm_end.connect(swarm_end)

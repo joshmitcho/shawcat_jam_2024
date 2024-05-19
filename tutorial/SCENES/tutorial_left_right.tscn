@@ -73,7 +73,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 12
 theme_override_fonts/font = ExtResource("2_l5aey")
 theme_override_font_sizes/font_size = 21
-text = "Move left and right with the ARROW KEYS"
+text = "A HERO has broken into Hell! Stop them at ALL COSTS!Move left and right with the ARROW KEYS"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -88,8 +88,4 @@ libraries = {
 position = Vector2(244, 96)
 shape = SubResource("RectangleShape2D_gbvsq")
 
-[node name="Timer" type="Timer" parent="Animated text"]
-wait_time = 2.0
-
 [connection signal="body_entered" from="Animated text/Area2D" to="Animated text" method="_on_area_2d_body_entered"]
-[connection signal="timeout" from="Animated text/Timer" to="Animated text" method="_on_timer_timeout"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://w0bwd5u5lfi8"]
+
+[ext_resource type="Script" path="res://scripts/level_falling.gd" id="1_5yfq6"]
+[ext_resource type="Texture2D" uid="uid://c7pde4b2rodo3" path="res://art/falling_bg.png" id="1_chsq3"]
+
+[node name="Falling" type="Node2D"]
+script = ExtResource("1_5yfq6")
+
+[node name="BG" type="TextureRect" parent="."]
+offset_left = -640.0
+offset_top = -192.0
+offset_right = 640.0
+offset_bottom = 528.0
+texture = ExtResource("1_chsq3")
